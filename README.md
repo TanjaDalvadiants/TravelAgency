@@ -12,7 +12,7 @@
 1. Открыть Intellij IDEA
 2. Склонировать репозиторий  https://github.com/TanjaDalvadiants/TravelAgency
 3. Открыть терминал и запустить контейнер: docker-compose up
-4. Открыть еще раз терминал и запустить SUT: java -jar artifacts/aqa-shop.jar
+4. Открыть еще раз терминал и запустить SUT: java -jar artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:3306/app 
 5. Открыть приложение в браузере http://localhost:8080/
 6. Запустить тесты: gradlew clean test
 7. Посмотреть отчет Allure в браузере: gradlew allureServe
@@ -22,7 +22,7 @@
 1. Открыть Intellij IDEA
 2. Склонировать репозиторий  https://github.com/TanjaDalvadiants/TravelAgency
 3. Открыть терминал и запустить контейнер: docker-compose up
-4. Открыть еще раз терминал и запустить SUT: java -jar artifacts/aqa-shop.jar
+4. Открыть еще раз терминал и запустить SUT: java -jar artifacts/aqa-shop.jar -P:jdbc.url=jdbc:mysql://localhost:5432/app
 5. Открыть приложение в браузере http://localhost:8080/
 6. Запустить тесты: gradlew clean test
 7. Посмотреть отчет Allure в браузере: gradlew allureServe
