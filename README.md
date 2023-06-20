@@ -8,8 +8,19 @@
 2. Результаты тестирования
 3. Результат автоматизации
 ## Этапы воспроизведения:
+### MySQL
 1. Открыть Intellij IDEA
-1. Склонировать репозиторий  https://github.com/TanjaDalvadiants/TravelAgency
+2. Склонировать репозиторий  https://github.com/TanjaDalvadiants/TravelAgency
+3. Открыть терминал и запустить контейнер: docker-compose up
+4. Открыть еще раз терминал и запустить SUT: java -jar artifacts/aqa-shop.jar
+5. Открыть приложение в браузере http://localhost:8080/
+6. Запустить тесты: gradlew clean test
+7. Посмотреть отчет Allure в браузере: gradlew allureServe
+8. Остановить контейнер: docker-compose down
+9. Отключить SUT: control+C
+### PostgreSQL
+1. Открыть Intellij IDEA
+2. Склонировать репозиторий  https://github.com/TanjaDalvadiants/TravelAgency
 3. Открыть терминал и запустить контейнер: docker-compose up
 4. Открыть еще раз терминал и запустить SUT: java -jar artifacts/aqa-shop.jar
 5. Открыть приложение в браузере http://localhost:8080/
