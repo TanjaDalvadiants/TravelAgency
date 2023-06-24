@@ -4,9 +4,9 @@
 * Обычная оплата по дебетовой карте.
 * Уникальная технология: выдача кредита по данным банковской карты.
 ## Документация 
-1. [План автоматизации](https://github.com/TanjaDalvadiants/TravelAgency/blob/master/docs/Plan.md) 
-2. Результаты тестирования
-3. Результат автоматизации
+1. [План автоматизации]([Plan.md](docs%2FPlan.md)) 
+2. [Результаты тестирования]([Report.md](docs%2FReport.md))
+3. [Результат автоматизации]([Summary.md](docs%2FSummary.md)docs%2FSummary.md)
 ## Этапы воспроизведения:
 ### MySQL
 1. Открыть Intellij IDEA
