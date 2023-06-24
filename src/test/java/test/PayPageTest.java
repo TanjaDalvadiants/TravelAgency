@@ -1,18 +1,11 @@
 package test;
 
-import com.codeborne.selenide.Configuration;
 import data.Card;
-import data.DataHelper;
 import data.SQLHelper;
 import io.qameta.allure.selenide.AllureSelenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import page.TourPage;
-
-import java.sql.SQLException;
 
 import static com.codeborne.selenide.Selenide.open;
 import static data.DataHelper.*;
@@ -37,6 +30,7 @@ public class PayPageTest {
 
 
     @Test
+    @DisplayName("Успешная операция с валидными значениями")
     void shouldFillValidValuesWithApprovedResult() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
@@ -50,6 +44,7 @@ public class PayPageTest {
     }
 
     @Test
+    @DisplayName("Отклоненная операция с валидными значениями")
     void shouldFillValidValuesWithDeclinedResult() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
@@ -62,6 +57,7 @@ public class PayPageTest {
         assertEquals(expected, actual);
     }
 
+    @DisplayName("Незаполненные поля")
     @Test
     void shouldEmptyCardNumber() {
         var TourPage = new TourPage();
@@ -96,7 +92,7 @@ public class PayPageTest {
     void shouldEmptyCardHolder() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
-        Card card = new Card(approvedCard(), currentMonth(), currentYear(), "",codeCVC());
+        Card card = new Card(approvedCard(), currentMonth(), currentYear(), "", codeCVC());
         PayPage.data(card);
         PayPage.emptyFieldMessage();
 
@@ -111,7 +107,7 @@ public class PayPageTest {
         PayPage.invalidFormatMessage();
 
     }
-
+    @DisplayName("Невалидные значения полей")
     @Test
     void shouldInvalidToShortCardNumber() {
         var TourPage = new TourPage();
@@ -154,6 +150,7 @@ public class PayPageTest {
         assertEquals(expected, actual);
 
     }
+
     @Test
     void shouldUnrealMonth() {
         var TourPage = new TourPage();
@@ -163,6 +160,7 @@ public class PayPageTest {
         PayPage.invalidCardDurationMessage();
 
     }
+
     @Test
     void shouldPastMonth() {
         var TourPage = new TourPage();
@@ -172,15 +170,17 @@ public class PayPageTest {
         PayPage.invalidCardDurationMessage();
 
     }
+
     @Test
     void shouldPastYear() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), pastYear(), name(), codeCVC());
         PayPage.data(card);
-        PayPage.invalidCardDurationMessage();
+        PayPage.passedCardMessage();
 
     }
+
     @Test
     void shouldYearPlusSix() {
         var TourPage = new TourPage();
@@ -190,67 +190,74 @@ public class PayPageTest {
         PayPage.invalidCardDurationMessage();
 
     }
+
     @Test
     void shouldNameWithRussianLetters() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), nameWithRussianLetters(), codeCVC());
         PayPage.data(card);
-        PayPage.emptyFieldMessage();
+        PayPage.invalidFormatMessage();
 
     }
+
     @Test
     void shouldNameWithSymbols() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), nameWithSymbols(), codeCVC());
         PayPage.data(card);
-        PayPage.emptyFieldMessage();
+        PayPage.invalidFormatMessage();
 
     }
+
     @Test
     void shouldToShortName() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), toShortName(), codeCVC());
         PayPage.data(card);
-        PayPage.emptyFieldMessage();
+        PayPage.invalidFormatMessage();
 
     }
+
     @Test
     void shouldToLongName() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), toLongName(), codeCVC());
         PayPage.data(card);
-        PayPage.emptyFieldMessage();
+        PayPage.invalidFormatMessage();
 
     }
+
     @Test
     void shouldToShortCVC() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), toLongName(), toShortCodeCVC());
         PayPage.data(card);
-        PayPage.emptyFieldMessage();
+        PayPage.invalidFormatMessage();
 
     }
+
     @Test
     void shouldToLongCVC() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), toLongName(), toLongCodeCVC());
         PayPage.data(card);
-        PayPage.emptyFieldMessage();
+        PayPage.invalidFormatMessage();
 
     }
+
     @Test
     void shouCodeCVCWithSymbols() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), toLongName(), codeCVCWithSymbols());
         PayPage.data(card);
-        PayPage.emptyFieldMessage();
+        PayPage.invalidFormatMessage();
 
     }
 }

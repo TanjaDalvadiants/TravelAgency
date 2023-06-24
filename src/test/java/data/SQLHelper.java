@@ -17,12 +17,12 @@ public class SQLHelper {
     private static Connection getConn() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
     }
+
     @SneakyThrows
     public static String getStatusPay() {
         var status = "SELECT status FROM payment_entity";
         return runner.query(getConn(), status, new ScalarHandler<>());
     }
-
 
     @SneakyThrows
     public static void cleanDatabase() {

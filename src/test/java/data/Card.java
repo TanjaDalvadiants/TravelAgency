@@ -1,7 +1,5 @@
 package data;
 
-import lombok.Value;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
