@@ -4,7 +4,7 @@
 * Обычная оплата по дебетовой карте.
 * Уникальная технология: выдача кредита по данным банковской карты.
 ## Документация 
-1. [План автоматизации](https://github.com/TanjaDalvadiants/TravelAgency/blob/master/docs/Plan.md)) 
+1. [План автоматизации](https://github.com/TanjaDalvadiants/TravelAgency/blob/master/docs/Plan.md)
 2. [Результаты тестирования](https://github.com/TanjaDalvadiants/TravelAgency/blob/master/docs/Report.md)
 3. [Результат автоматизации](https://github.com/TanjaDalvadiants/TravelAgency/blob/master/docs/Summary.md)
 ## Этапы воспроизведения:

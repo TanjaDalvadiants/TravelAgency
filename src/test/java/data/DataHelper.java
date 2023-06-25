@@ -83,23 +83,6 @@ public class DataHelper {
         return String.format("%02d", year);
     }
 
-    public static String codeCVC() {
-        FakeValuesService fake = new FakeValuesService(
-                new Locale("en"), new RandomService());
-        return fake.regexify("[1-999]{3}");
-    }
-
-    public static String toShortCodeCVC() {
-        return "1";
-    }
-
-    public static String toLongCodeCVC() {
-        return "1234";
-    }
-
-    public static String codeCVCWithSymbols() {
-        return "^%*Sa";
-    }
 
     public static String name() {
         return faker.name().firstName().toUpperCase() + " " + faker.name().lastName().toUpperCase();
@@ -121,6 +104,24 @@ public class DataHelper {
         FakeValuesService fake = new FakeValuesService(
                 new Locale("en"), new RandomService());
         return fake.regexify("[a-z]{65}");
+    }
+
+    public static String codeCVC() {
+        FakeValuesService fake = new FakeValuesService(
+                new Locale("en"), new RandomService());
+        return fake.regexify("[1-999]{3}");
+    }
+
+    public static String toShortCodeCVC() {
+        return "1";
+    }
+
+    public static String toLongCodeCVC() {
+        return "1234";
+    }
+
+    public static String codeCVCWithSymbols() {
+        return "^%*Sa";
     }
 
 
