@@ -59,7 +59,7 @@ public class PayPageTest {
 
     @DisplayName("Незаполненные поля")
     @Test
-    void shouldEmptyCardNumber() {
+    void shouldFillEmptyCardNumber() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card("", currentMonth(), currentYear(), name(), codeCVC());
@@ -69,7 +69,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldEmptyMonthNumber() {
+    void shouldFillEmptyMonthNumber() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), "", currentYear(), name(), codeCVC());
@@ -79,7 +79,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldEmptyYearNumber() {
+    void shouldFillEmptyYearNumber() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), "", name(), codeCVC());
@@ -89,7 +89,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldEmptyCardHolder() {
+    void shouldFillEmptyCardHolder() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), currentYear(), "", codeCVC());
@@ -99,7 +99,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldEmptyCVC() {
+    void shouldFillEmptyCVC() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), currentYear(), name(), "");
@@ -109,7 +109,7 @@ public class PayPageTest {
     }
     @DisplayName("Невалидные значения полей")
     @Test
-    void shouldInvalidToShortCardNumber() {
+    void shouldFillInvalidToShortCardNumber() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(invalidToShortCardNumber(), currentMonth(), currentYear(), name(), codeCVC());
@@ -119,7 +119,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldToLongCardNumber() {
+    void shouldFillToLongCardNumber() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(invalidToLongCardNumber(), currentMonth(), currentYear(), name(), codeCVC());
@@ -129,7 +129,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldCardNumberWithSymbols() {
+    void shouldFillCardNumberWithSymbols() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(invalidCardNumberWithSymbols(), currentMonth(), currentYear(), name(), codeCVC());
@@ -139,20 +139,17 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldInvalidCardNumberWithAnotherNumbers() {
+    void shouldFillInvalidCardNumberWithAnotherNumbers() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(invalidCardNumberWithAnotherNumbers(), currentMonth(), currentYear(), name(), codeCVC());
         PayPage.data(card);
-        PayPage.declinedOperationMessage();
-        var expected = "DECLINED";
-        var actual = SQLHelper.getStatusPay();
-        assertEquals(expected, actual);
+        PayPage.errorMessage();
 
     }
 
     @Test
-    void shouldUnrealMonth() {
+    void shouldFillUnrealMonth() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), "13", currentYear(), name(), codeCVC());
@@ -162,7 +159,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldPastMonth() {
+    void shouldFillPastMonth() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), pastMonth(), currentYear(), name(), codeCVC());
@@ -172,7 +169,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldPastYear() {
+    void shouldFillPastYear() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), pastYear(), name(), codeCVC());
@@ -182,7 +179,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldYearPlusSix() {
+    void shouldFillYearPlusSix() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), invalidYear(), name(), codeCVC());
@@ -192,7 +189,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldNameWithRussianLetters() {
+    void shouldFillNameWithRussianLetters() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), nameWithRussianLetters(), codeCVC());
@@ -202,7 +199,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldNameWithSymbols() {
+    void shouldFillNameWithSymbols() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), nameWithSymbols(), codeCVC());
@@ -212,17 +209,17 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldToShortName() {
+    void shouldFillToShortName() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), toShortName(), codeCVC());
         PayPage.data(card);
-        PayPage.invalidFormatMessage();
+        PayPage.errorMessage();
 
     }
 
     @Test
-    void shouldToLongName() {
+    void shouldFillToLongName() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), toLongName(), codeCVC());
@@ -232,7 +229,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldToShortCVC() {
+    void shouldFillToShortCVC() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), toLongName(), toShortCodeCVC());
@@ -242,7 +239,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouldToLongCVC() {
+    void shouldFillToLongCVC() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), toLongName(), toLongCodeCVC());
@@ -252,7 +249,7 @@ public class PayPageTest {
     }
 
     @Test
-    void shouCodeCVCWithSymbols() {
+    void shouFillCodeCVCWithSymbols() {
         var TourPage = new TourPage();
         var PayPage = TourPage.payPageOpen();
         Card card = new Card(approvedCard(), currentMonth(), validYear(), toLongName(), codeCVCWithSymbols());

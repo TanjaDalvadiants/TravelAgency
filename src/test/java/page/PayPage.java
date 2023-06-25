@@ -21,10 +21,12 @@ public class PayPage {
     private SelenideElement continueButton = $$(".button__text").find(exactText("Продолжить"));
     private SelenideElement approvedMessage = $(".notification_status_ok");
     private SelenideElement declinedMessage = $(".notification_status_declined");
+    private SelenideElement errorMessage = $(".notification_status_error");
     private SelenideElement invalidFormat = $$(".input__sub").find(exactText("Неверный формат"));
     private SelenideElement emptyField = $$(".input__sub").find(exactText("Поле обязательно для заполнения"));
     private SelenideElement passedCard = $$(".input__sub").find(exactText("Истёк срок действия карты"));
     private SelenideElement invalidCardDuration = $$(".input__sub").find(exactText("Неверно указан срок действия карты"));
+
 
     public PayPage() {
         payPageHead.shouldBe(Condition.visible);
@@ -36,6 +38,9 @@ public class PayPage {
 
     public void declinedOperationMessage() {
         declinedMessage.shouldBe(Condition.visible, Duration.ofSeconds(15));
+    }
+    public void errorMessage() {
+        errorMessage.shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
 
     public void invalidFormatMessage() {
