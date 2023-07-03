@@ -14,7 +14,7 @@
 3. Открыть терминал и запустить контейнер: docker-compose up -d
 4. Открыть еще раз терминал и запустить SUT: java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/app" -jar artifacts/aqa-shop.jar
 5. Открыть приложение в браузере http://localhost:8080/
-6. Запустить тесты: ./gradlew clean test
+6. Запустить тесты: ./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app"
 7. Посмотреть отчет Allure в браузере: ./gradlew allureServe или allureReport
 8. Остановить контейнер: docker-compose down
 9. Отключить SUT: control+C
@@ -25,7 +25,7 @@
 
 4. Открыть еще раз терминал и запустить SUT: java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar artifacts/aqa-shop.jar
 5. Открыть приложение в браузере http://localhost:8080/
-6. Запустить тесты: ./gradlew clean test
+6. Запустить тесты: ./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"
 7. Посмотреть отчет Allure в браузере: ./gradlew allureServe или allureReport
 8. Остановить контейнер: docker-compose down
 9. Отключить SUT: control+C

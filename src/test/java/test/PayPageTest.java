@@ -12,21 +12,27 @@ import static data.DataHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PayPageTest {
+    public static String url = System.getProperty( "sut.url" );
     @BeforeAll
     static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
+    @BeforeEach
+    public void openPage() {
+        open( url );
+    }
+
+//    @BeforeEach
+//    public void cleanBase() {
+//        SQLHelper.cleanDatabase();
+//    }
 
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
     }
 
-    @BeforeEach
-    void setUp() {
-        open("http://localhost:8080");
-        SQLHelper.cleanDatabase();
-    }
+
 
 
     @Test

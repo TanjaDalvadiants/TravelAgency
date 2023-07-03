@@ -10,12 +10,21 @@ import java.sql.SQLException;
 
 public class SQLHelper {
     private static QueryRunner runner = new QueryRunner();
+    private static final String url = System.getProperty( "db.url" );
+
 
     private SQLHelper() {
     }
+    @SneakyThrows
+    private static Connection getConn()  {
+        return DriverManager.getConnection(url, "app", "pass");
 
-    private static Connection getConn() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
+    }
+    @SneakyThrows
+    public static void cleanDatabase() {
+        var connection = getConn();
+        runner.execute(connection, "DELETE FROM payment_entity");
+
     }
 
     @SneakyThrows
@@ -24,11 +33,6 @@ public class SQLHelper {
         return runner.query(getConn(), status, new ScalarHandler<>());
     }
 
-    @SneakyThrows
-    public static void cleanDatabase() {
-        var connection = getConn();
-        runner.execute(connection, "DELETE FROM payment_entity");
 
-    }
 }
 
