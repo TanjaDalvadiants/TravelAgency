@@ -22,10 +22,10 @@ public class PayPageTest {
         open( url );
     }
 
-//    @BeforeEach
-//    public void cleanBase() {
-//        SQLHelper.cleanDatabase();
-//    }
+    @BeforeEach
+    public void cleanBase() {
+        SQLHelper.cleanDatabase();
+    }
 
     @AfterAll
     static void tearDownAll() {
